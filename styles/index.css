@@ -182,14 +182,15 @@
     height: 24px;
 }
 
-#add-task-input {
+.add-task-input {
     border: 2px solid var(--border-color);
     border-radius: 5px;
     background-color: transparent;
     outline: none;
+    color: var(--main-font-color);
 }
 
-#add-task-input::placeholder {
+.add-task-input::placeholder {
     color: var(--second-font-color);
 }
 
