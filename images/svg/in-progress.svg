@@ -1,0 +1,11 @@
+<svg viewBox="0 0 10 10" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="in-progress">
+    <!-- Белый круг с более толстой зеленой обводкой -->
+    <circle cx="5" cy="5" r="4.5" fill="white" stroke="green" stroke-width="1"/>
+
+    <!-- Зеленое заполнение на 1/6, прилегающее к обводке -->
+    <path d="M5,5 L5,0.5 A4.5,4.5 0 0,1 8.5,1.8 Z" fill="green"/>
+  </symbol>
+</svg>
+
+

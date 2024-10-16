@@ -1,0 +1,11 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  
+  <!-- Background -->
+  <rect width="100%" height="100%" fill="transparent"/>
+  
+  <!-- Circle -->
+  <circle cx="100" cy="100" r="80" fill="black"/>
+
+  <!-- Checkmark -->
+  <path d="M65 100 L95 130 L145 70" stroke="white" stroke-width="10" fill="none" />
+</svg>

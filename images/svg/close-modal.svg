@@ -1,0 +1,8 @@
+<svg width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <symbol id="close-modal">
+    <!-- Линия из верхнего левого угла в нижний правый -->
+    <line x1="4" y1="4" x2="20" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+    <!-- Линия из верхнего правого угла в нижний левый -->
+    <line x1="20" y1="4" x2="4" y2="20" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+  </symbol>
+</svg>
