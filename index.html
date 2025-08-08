@@ -1,103 +1,13 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="color-scheme" content="dark light"/>
-  <title>TaskTable</title>
-  <link rel="icon" href="./images/svg/icon.svg" sizes="any" type="image/svg+xml">
-  <link rel="icon" href="./images/favicon/icon.ico" sizes="any">
-  <link rel="stylesheet" href="./styles/global.css">
-  <link rel="stylesheet" href="./styles/themes.css">
-  <link rel="stylesheet" href="./styles/index.css">
-  <link rel="stylesheet" href="./fonts/fonts.css">
-</head>
-<body class="page">
-  
-  <header class="header">
-    <ul class="button-list">
-      <li class="button-item"><button type="button" class="button button-type-light">Светло</button></li>
-      <li class="button-item"><button type="button" class="button button-type-dark">Темно</button></li>
-      <li class="button-item"><button type="button" class="button button-type-auto">Авто</button></li>
-    </ul>
-    <h1 class="header-heading">TaskTable</h1>
-  </header>
-
-  <main class="main">
-    <section class="list to-do-list">
-      <h2 class="card-heading">
-        <svg class="svg svg-to-do" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-          <use href="./images/svg/to-do.svg#to-do" x="1" y="0" width="10" height="10" />
-        </svg>
-        <span>To-do-лист</span>
-      </h2>
-      <ul class="task-list to-do"></ul>
-      <button type="button" class="open-modal-window"
-        onclick="window['dialog-id'].showModal();"
-        aria-controls="dialog-id">
-        <svg class="svg svg-add-task" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-          <use href="./images/svg/add-task.svg#addTask" x="0" y="0" width="12" height="14" ></use>
-        </svg>
-        Добавить задачу
-      </button>
-    </section>
-    <section class="list in-progress-list">
-      <h2 class="card-heading">
-        <svg class="svg svg-to-do" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-          <use href="./images/svg/in-progress.svg#in-progress" x="1" y="0" width="12" height="12" />
-        </svg>
-        <span>В процессе</span>
-      </h2>
-      <ul class="task-list in-progress"></ul>
-    </section>
-    <section class="list ">
-      <h2 class="card-heading">
-        <svg class="svg svg-to-do" viewBox="0 0 12 10" xmlns="http://www.w3.org/2000/svg">
-          <use href="./images/svg/completed.svg#completed" x="1" y="0" width="12" height="12" />
-        </svg>
-        <span>Выполнено</span>
-      </h2>
-      <ul class="task-list completed"></ul>
-    </section>
-  </main>
-
-  <dialog id="dialog-id" class="add-task-modal-window">
-    <button type="button" class="close-modal-window"
-    onclick="window['dialog-id'].close()">
-      <svg class="svg close-modal-svg" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <use href="./images/svg/close-modal.svg#close-modal"></use>
-      </svg>
-    </button>
-    <input class="add-task-input" id="add-task-input" type="text" placeholder=" Название задачи:">
-    <button class="add-task" 
-      onclick="window['dialog-id'].close()">
-      <svg class="add-task-svg" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <use  href="./images/svg/add-task-2.svg#add-task-2"></use>
-      </svg>
-      <span>Добавить задачу</span>
-    </button>
-  </dialog>
-
-</body>
-
-<template id="task-template">
-  <li class="task-item">
-    <span class="task-description"></span>
-    <div class="button-container">
-      <button type="button" class="delete-task">
-        <svg width="16px" height="24px" xmlns="http://www.w3.org/2000/svg">
-          <use href="./images/svg/bucket.svg#bucket"></use>
-        </svg>
-      </button>
-      <button type="button" class="move-to">
-        <svg width="16" height="8" xmlns="http://www.w3.org/2000/svg">
-          <use id="svg-id" href="./images/svg/move-to.svg#moveTo"></use>
-        </svg>
-      </button>
-    </div>
-  </li>
-</template>
-
-<script src="./script/index.js"></script>
-<script src="./script/themes.js"></script>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + React + TS</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
 </html>
