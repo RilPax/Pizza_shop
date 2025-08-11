@@ -5,6 +5,7 @@ import {
   loginUserThunk,
   registerUserThunk,
 } from "../../store/slices/user-slice";
+import styles from "./auth-form.module.css";
 
 interface AuthFormProps {
   type: "register" | "login";
@@ -18,12 +19,8 @@ export const AuthForm = ({ type }: AuthFormProps) => {
 
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
-    if (type === "login")
-      dispatch(loginUserThunk({ mail: mail, password: password }));
-    else
-      dispatch(
-        registerUserThunk({ name: name, mail: mail, password: password })
-      );
+    if (type === "login") dispatch(loginUserThunk({ mail, password }));
+    else dispatch(registerUserThunk({ name, mail, password }));
 
     setMail("");
     setName("");
@@ -31,9 +28,9 @@ export const AuthForm = ({ type }: AuthFormProps) => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        {type == "register" && (
+    <div className={styles.wrapper}>
+      <form onSubmit={handleSubmit} className={styles.form}>
+        {type === "register" && (
           <input
             onChange={(e) => setName(e.target.value)}
             value={name}
@@ -46,7 +43,8 @@ export const AuthForm = ({ type }: AuthFormProps) => {
           onChange={(e) => setMail(e.target.value)}
           value={mail}
           type="email"
-          placeholder="Введте почту"
+          placeholder="Введите почту"
+          required
         />
         <input
           onChange={(e) => setPassword(e.target.value)}
@@ -58,15 +56,17 @@ export const AuthForm = ({ type }: AuthFormProps) => {
         <button type="submit">
           {type === "login" ? "Войти" : "Зарегистрироваться"}
         </button>
+        <div className={styles.switch}>
+          <span>
+            {type === "login"
+              ? "Еще не зарегистрированы?"
+              : "Уже есть аккаунт?"}
+          </span>
+          <Link to={type === "login" ? "/register" : "/login"}>
+            {type === "login" ? "Зарегистрироваться" : "Войти"}
+          </Link>
+        </div>
       </form>
-      <div>
-        <span>
-          {type === "login" ? "Еще не зарегистрированы?" : "Уже есть аккаунт?"}
-        </span>
-        <Link to={type === "login" ? "/register" : "/login"}>
-          {type === "login" ? "Зарегистрироваться" : "Войти"}
-        </Link>
-      </div>
     </div>
   );
 };

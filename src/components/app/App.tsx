@@ -4,12 +4,16 @@ import { useAppDispatch } from "../../store/store";
 import { useEffect } from "react";
 import { authoriseUserThunk } from "../../store/slices/user-slice";
 import { Basket, Catalog, Login, Profile, Register } from "../../pages";
+import { fetchBasket } from "../../store/slices/basket-slice";
 
 export function App() {
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(authoriseUserThunk());
+    dispatch(authoriseUserThunk()).then(() => {
+    dispatch(fetchBasket());
+  });
+    
   }, [dispatch]);
 
   return (

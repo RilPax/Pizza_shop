@@ -73,7 +73,7 @@ export const logoutUserThunk = createAsyncThunk<void>(
   "user/logout",
   async (__, { rejectWithValue }) => {
     try {
-      localStorage.removeItem("roken");
+      localStorage.removeItem("token");
     } catch (error) {
       return rejectWithValue(error);
     }

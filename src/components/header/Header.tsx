@@ -14,7 +14,7 @@ export const Header = () => {
       <nav className={styles.nav}>
         <Link to="/basket" className={styles.basketLink}>
           Корзина
-          {basketCount > 0 && (
+          {basketCount > 0 && isAuth && (
             <span className={styles.basketCount}>{basketCount}</span>
           )}
         </Link>

@@ -1,0 +1,47 @@
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.itemInfo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.itemNumber {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background: #ff6b00;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  line-height: 24px;
+  border-radius: 50%;
+}
+
+.itemTitle {
+  font-size: 1rem;
+}
+
+.price {
+  margin-right: 1rem;
+  font-weight: bold;
+}
+
+.removeButton {
+  background-color: #ff4d4f;
+  color: white;
+  border: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.removeButton:hover {
+  background-color: #d9363e;
+}

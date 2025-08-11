@@ -5,4 +5,5 @@ export { Header } from "./header/Header";
 export { Footer } from "./footer/Footer";
 export { Layout } from "./layout/Layout";
 export { AuthForm } from "./auth-form/AuthForm";
-export { BasketCard } from "./basket-card/BasketCard";
+export { Modal } from "./modal/Modal";
+export { BasketItem } from "./basket-item/BasketItem";
