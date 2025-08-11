@@ -1,8 +1,9 @@
 import { Routes, Route } from "react-router";
-import { ProtectedRoute, PublicOnlyRoute } from "../index";
+import { Layout, ProtectedRoute, PublicOnlyRoute } from "../index";
 import { useAppDispatch } from "../../store/store";
 import { useEffect } from "react";
 import { authoriseUserThunk } from "../../store/slices/user-slice";
+import { Basket, Cathalog, Login, Profile, Register } from "../../pages";
 
 export function App() {
   const dispatch = useAppDispatch();
@@ -13,14 +14,18 @@ export function App() {
 
   return (
     <Routes>
-      <Route path="/" />
-      <Route element={<ProtectedRoute />}>
-        <Route path="/basket" />
-        <Route path="/profile" />
+      <Route element={<Layout />}>
+        <Route path="/" element={<Cathalog />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/basket" element={<Basket />} />
+          <Route path="/profile" element={<Profile />} />
+        </Route>
       </Route>
+
       <Route element={<PublicOnlyRoute />}>
-        <Route path="/register" />
-        <Route path="/login" />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
       </Route>
     </Routes>
   );

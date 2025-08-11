@@ -1,12 +1,12 @@
 import type { TLoginUser, TProduct, TRegisterUser, TUser } from "./types";
 import axios from "axios";
 
-const BASE_URL = import.meta.env.BASE_URL;
+const BASE_URL = import.meta.env.VITE_BASE_URL;
 
 export const registerUser = async (userData: TRegisterUser): Promise<TUser> => {
   try {
     const { data } = await axios.post<TUser>(`${BASE_URL}/users`, userData);
-    localStorage.setItem('token', JSON.stringify(data.id))
+    localStorage.setItem("token", data.id.toString());
     return data;
   } catch (error) {
     console.error("Ошибка при регистрации:", error);
@@ -17,9 +17,9 @@ export const registerUser = async (userData: TRegisterUser): Promise<TUser> => {
 export const loginUser = async (userData: TLoginUser): Promise<TUser> => {
   try {
     const { data } = await axios.get<TUser[]>(
-      `${BASE_URL}/users?name=${userData.name}&password=${userData.password}`
+      `${BASE_URL}/users?mail=${userData.mail}&password=${userData.password}`
     );
-    localStorage.setItem('token', data[0].id)
+    localStorage.setItem("token", data[0].id.toString());
     return data[0];
   } catch (error) {
     console.error("Ошибка при логине:", error);
@@ -40,22 +40,22 @@ export const authoriseUser = async (): Promise<TUser | null> => {
 };
 
 export const removeUser = async (): Promise<void> => {
-    try {
-        const token = localStorage.getItem('token')
-        await axios.delete(`${BASE_URL}/users/${token}`)
-        localStorage.removeItem('token')
-    } catch (error) {
-        console.error("произошла ошибка:", error);
+  try {
+    const token = localStorage.getItem("token");
+    await axios.delete(`${BASE_URL}/users/${token}`);
+    localStorage.removeItem("token");
+  } catch (error) {
+    console.error("произошла ошибка:", error);
     throw error;
-    }
-}
+  }
+};
 
 export const fetchProducts = async (): Promise<TProduct[]> => {
-    try {
-        const { data } = await axios.get<TProduct[]>(`${BASE_URL}/products`)
-        return data
-    } catch (error) {
-        console.error("произошла ошибка:", error);
+  try {
+    const { data } = await axios.get<TProduct[]>(`${BASE_URL}/products`);
+    return data;
+  } catch (error) {
+    console.error("произошла ошибка:", error);
     throw error;
-    }
-}
+  }
+};

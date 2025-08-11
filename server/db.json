@@ -1,4 +1,11 @@
 {
-    "users": [],
-    "products": []
+  "users": [
+    {
+      "id": "1782",
+      "name": "Руслан",
+      "mail": "anonym2004@mail.ru",
+      "password": "123321"
+    }
+  ],
+  "products": []
 }

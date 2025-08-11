@@ -28,7 +28,14 @@ export const fetchProductsThunk = createAsyncThunk<TProduct[]>(
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {},
+  reducers: {
+    sortByPriceAsc(state) {
+      state.products.sort((a, b) => a.price - b.price);
+    },
+    sortByPriceDesc(state) {
+      state.products.sort((a, b) => b.price - a.price);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsThunk.pending, (state) => {
@@ -47,3 +54,5 @@ const productsSlice = createSlice({
 });
 
 export default productsSlice.reducer;
+
+export const { sortByPriceAsc, sortByPriceDesc } = productsSlice.actions

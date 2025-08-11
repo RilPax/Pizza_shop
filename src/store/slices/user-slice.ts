@@ -120,7 +120,7 @@ const userSlice = createSlice({
       .addCase(authoriseUserThunk.fulfilled, (state, action) => {
         state.loading = false;
         state.user = action.payload;
-        state.isAuth = true;
+        state.isAuth = action.payload ? true : false;
       })
       .addCase(authoriseUserThunk.rejected, (state, action) => {
         state.loading = false;
