@@ -11,14 +11,14 @@ interface UserState {
   user: TUser | null;
   loading: boolean;
   error: string | null;
-  isAuth: boolean
+  isAuth: boolean;
 }
 
 const initialState: UserState = {
   user: null,
   loading: false,
   error: null,
-  isAuth: false
+  isAuth: false,
 };
 
 // Регистрация
@@ -69,15 +69,21 @@ export const removeUserThunk = createAsyncThunk<void>(
   }
 );
 
+export const logoutUserThunk = createAsyncThunk<void>(
+  "user/logout",
+  async (__, { rejectWithValue }) => {
+    try {
+      localStorage.removeItem("roken");
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 const userSlice = createSlice({
   name: "user",
   initialState,
-  reducers: {
-    logout(state) {
-      state.user = null;
-      localStorage.removeItem("token");
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       // Регистрация
@@ -93,7 +99,7 @@ const userSlice = createSlice({
       .addCase(registerUserThunk.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload as string;
-        state.isAuth = false
+        state.isAuth = false;
       })
 
       // Логин
@@ -112,6 +118,11 @@ const userSlice = createSlice({
         state.isAuth = false;
       })
 
+      // Логаут
+      .addCase(logoutUserThunk.fulfilled, (state) => {
+        state.user = null;
+        state.isAuth = false;
+      })
       // Авторизация
       .addCase(authoriseUserThunk.pending, (state) => {
         state.loading = true;
@@ -136,5 +147,4 @@ const userSlice = createSlice({
   },
 });
 
-export const { logout } = userSlice.actions;
 export default userSlice.reducer;

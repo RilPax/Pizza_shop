@@ -3,7 +3,7 @@ import { Layout, ProtectedRoute, PublicOnlyRoute } from "../index";
 import { useAppDispatch } from "../../store/store";
 import { useEffect } from "react";
 import { authoriseUserThunk } from "../../store/slices/user-slice";
-import { Basket, Cathalog, Login, Profile, Register } from "../../pages";
+import { Basket, Catalog, Login, Profile, Register } from "../../pages";
 
 export function App() {
   const dispatch = useAppDispatch();
@@ -15,7 +15,7 @@ export function App() {
   return (
     <Routes>
       <Route element={<Layout />}>
-        <Route path="/" element={<Cathalog />} />
+        <Route path="/" element={<Catalog />} />
 
         <Route element={<ProtectedRoute />}>
           <Route path="/basket" element={<Basket />} />

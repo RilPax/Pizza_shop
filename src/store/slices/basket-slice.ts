@@ -46,6 +46,11 @@ const basketSlice = createSlice({
       localStorage.setItem("basket", JSON.stringify(state.products));
       if (state.products.length === 0) localStorage.removeItem("basket");
     },
+    clearBasket: (state) => {
+      state.products = [];
+      localStorage.removeItem("basket");
+      state.sum = 0;
+    },
   },
   extraReducers: (builder) => {
     builder.addCase(fetchBasket.fulfilled, (state, action) => {
@@ -57,4 +62,4 @@ const basketSlice = createSlice({
 
 export default basketSlice.reducer;
 
-export const { addProduct, removeProduct } = basketSlice.actions;
+export const { addProduct, removeProduct, clearBasket } = basketSlice.actions;

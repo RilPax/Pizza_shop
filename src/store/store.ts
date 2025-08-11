@@ -1,15 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
-import userSlice from "./slices/user-slice";
-import productsSlice from "./slices/products-slice";
-import { useDispatch, useSelector, type TypedUseSelectorHook } from "react-redux";
+import userReducer from "./slices/user-slice";
+import productsReducer from "./slices/products-slice";
+import basketReducer from "./slices/basket-slice";
+import {
+  useDispatch,
+  useSelector,
+  type TypedUseSelectorHook,
+} from "react-redux";
 
 export const store = configureStore({
-    reducer: {
-        user: userSlice,
-        products: productsSlice
-    }
-})
-
+  reducer: {
+    user: userReducer,
+    products: productsReducer,
+    basket: basketReducer,
+  },
+});
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

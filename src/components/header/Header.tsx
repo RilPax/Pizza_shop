@@ -1,23 +1,35 @@
 import { Link } from "react-router-dom";
-import { useAppSelector, useAppDispatch } from "../../store/store";
-import { logout } from "../../store/slices/user-slice";
+import { useAppDispatch, useAppSelector } from "../../store/store";
+import styles from "./Header.module.css";
+import { logoutUserThunk } from "../../store/slices/user-slice";
 
 export const Header = () => {
-  const { isAuth, user } = useAppSelector((state) => state.user);
   const dispatch = useAppDispatch();
+  const { user, isAuth } = useAppSelector((state) => state.user);
+  const basketCount = useAppSelector((state) => state.basket.products.length);
 
   return (
-    <header className="header">
-      <Link to="/">Магазин</Link>
-      <nav>
-        <Link to="/basket">Корзина</Link>
+    <header className={styles.header}>
+      <Link to="/" className={styles.link}>Магазин</Link>
+      <nav className={styles.nav}>
+        <Link to="/basket" className={styles.basketLink}>
+          Корзина
+          {basketCount > 0 && (
+            <span className={styles.basketCount}>{basketCount}</span>
+          )}
+        </Link>
         {isAuth ? (
           <>
-            <Link to="/profile">{user?.name}</Link>
-            <button onClick={() => dispatch(logout())}>Выйти</button>
+            <Link to="/profile" className={styles.link}>{user?.name}</Link>
+            <button
+              className={styles.button}
+              onClick={() => dispatch(logoutUserThunk())}
+            >
+              Выйти
+            </button>
           </>
         ) : (
-          <Link to="/login">Войти</Link>
+          <Link to="/login" className={styles.link}>Войти</Link>
         )}
       </nav>
     </header>
