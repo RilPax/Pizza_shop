@@ -9,11 +9,13 @@ import type { RootState } from "../store";
 interface BasketState {
   products: TProduct[];
   sum: number;
+  orderSuccess: boolean
 }
 
 const initialState: BasketState = {
   products: [],
   sum: 0,
+  orderSuccess: false
 };
 
 // Вспомогательная функция для безопасного ключа
@@ -75,6 +77,28 @@ export const removeProductAndSave = createAsyncThunk<
   localStorage.setItem(key, JSON.stringify(newProducts));
 });
 
+export const clearBasket = createAsyncThunk<
+  TProduct[],
+  void,
+  { state: RootState }
+>(
+  'basket/clear',
+  async (__, { getState, rejectWithValue }) => {
+    try {
+      const state = getState();
+      const isAuth = state.user.isAuth; // если user внутри state.user
+
+      if (!isAuth) {
+        return rejectWithValue("Пользователь не найден");
+      }
+
+      localStorage.removeItem(`basket_${state.user.user!.id}`);
+      return [];
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
 
 const basketSlice = createSlice({
   name: "basket",
@@ -84,19 +108,23 @@ const basketSlice = createSlice({
       state.products = action.payload;
       state.sum = action.payload.length;
     },
-    clearBasket: (state) => {
-      state.products = [];
-      state.sum = 0;
-    },
+    setOrderSuccess: (state, action: PayloadAction<boolean>) => {
+      state.orderSuccess = action.payload;
+    }
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchBasket.fulfilled, (state, action) => {
-      state.products = action.payload;
-      state.sum = action.payload.length;
-    });
+    builder
+      .addCase(fetchBasket.fulfilled, (state, action) => {
+          state.products = action.payload;
+          state.sum = action.payload.length;
+        })
+      .addCase(clearBasket.fulfilled, (state, action) => {
+        state.products = action.payload
+        state.sum = 0
+      })
   },
 });
 
-export const { setProducts, clearBasket } = basketSlice.actions;
+export const { setProducts, setOrderSuccess } = basketSlice.actions;
 
 export default basketSlice.reducer;

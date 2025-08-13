@@ -1,0 +1,93 @@
+.offer {
+  max-width: 600px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #ff6b00;
+}
+
+.message {
+  text-align: center;
+  font-size: 1rem;
+  padding: 2rem;
+  color: #555;
+}
+
+.list {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #eee;
+}
+
+.index {
+  font-weight: bold;
+  margin-right: 0.5rem;
+  color: #ff6b00;
+}
+
+.name {
+  flex: 1;
+}
+
+.price {
+  font-weight: 600;
+  color: #333;
+}
+
+.total {
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin: 1rem 0;
+  text-align: right;
+  color: #ff6b00;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.form input {
+  font: inherit;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  transition: border-color 0.2s ease;
+}
+
+.form input:focus {
+  outline: none;
+  border-color: #ff6b00;
+  box-shadow: 0 0 0 2px rgba(255, 107, 0, 0.15);
+}
+
+.submit {
+  background: #ff6b00;
+  color: white;
+  font-weight: 500;
+  padding: 0.75rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  border: none;
+}
+
+.submit:hover {
+  background: #e55f00;
+}

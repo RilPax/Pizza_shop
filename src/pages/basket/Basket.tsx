@@ -1,6 +1,7 @@
 import { useAppSelector } from "../../store/store";
 import styles from "./basket.module.css";
-import { BasketItem } from '../../components/index';
+import { BasketItem } from "../../components/index";
+import { Link } from "react-router-dom";
 
 export const Basket = () => {
   const basket = useAppSelector((state) => state.basket.products);
@@ -21,7 +22,9 @@ export const Basket = () => {
             ))}
           </ul>
           <div className={styles.total}>Итого: {totalPrice}</div>
-          <button className={styles.checkoutButton}>Оформить заказ</button>
+          <Link to="/offer" className={styles.checkoutButton}>
+            Оформить заказ
+          </Link>
         </>
       )}
     </div>
