@@ -1,69 +1,111 @@
-# React + TypeScript + Vite
+# 🍕 Pizza-shop
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Интерактивное веб-приложение для заказа пиццы, созданное с использованием современного фронтенд-стека.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Стек технологий
+- **TypeScript** — строгая типизация
+- **React** — компонентный UI
+- **React Router** — маршрутизация
+- **Redux** & **Redux Toolkit** — управление состоянием
+- **Vite** — быстрая сборка и разработка
+- **json-server** — эмуляция backend API
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 📦 Установка и запуск
+1. **Склонируйте репозиторий:**
+   ```bash
+   git clone <url-репозитория>
+   cd pizza-shop
+   ```
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+2. **Установите зависимости:**
+   ```bash
+   npm i
+   ```
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+3. **Запустите dev-сервер фронтенда:**
+   ```bash
+   npm run dev
+   ```
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+4. **Запустите json-server (mock API):**
+   ```bash
+   npm run server
+   ```
+
+5. Откройте проект в браузере по адресу:
+   ```
+   http://localhost:5173
+   ```
+
+---
+
+## 📂 Структура проекта
+```
+pizza-shop/
+├── public/                  # Публичные статические файлы
+├── src/
+│   ├── assets/              # Изображения и иконки
+│   ├── components/          # Переиспользуемые UI-компоненты
+│   ├── features/            # Redux-slices для разных модулей
+│   ├── pages/               # Страницы приложения
+│   ├── routes/              # Конфигурация маршрутов
+│   ├── store/               # Конфигурация Redux-хранилища
+│   ├── utils/               # Утилиты и вспомогательные модули
+│   │   ├── api.ts           # Все API-запросы к json-server
+│   │   └── types.ts         # Общие типы TypeScript
+│   ├── app/
+│   │   └── components/
+│   │       └── App.tsx      # Корневой компонент приложения
+│   ├── main.tsx             # Точка входа
+│   └── index.css            # Глобальные стили
+├── server/
+│   └── db.json              # База данных для json-server
+├── package.json
+└── vite.config.ts
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📡 API (json-server)
+**Базовый URL:** `http://localhost:3000`
 
-export default tseslint.config([
-  globalIgnores(['dist']),
+| Метод | URL                                     | Описание                   |
+|-------|-----------------------------------------|----------------------------|
+| GET   | `/products`                             | Получить список всех пицц  |
+| GET   | `/products/:id`                         | Получить пиццу по ID       |
+| GET   | `/users/:id`                            | Авторизация пользователя   |
+| GET   | `/users?mail={мэил}&password={пароль}`  | авторизация пользователя   |
+
+Пример ответа **GET /products**:
+```json
+[
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
+    "id": "1",
+    "title": "Маргарита",
+    "description": "Классическая пицца с томатным соусом, моцареллой и свежим базиликом",
+    "price": 450,
+    "cathegory": "Пицца"
   },
-])
+]
 ```
+
+---
+
+## 📄 Возможности
+- Просмотр меню
+- Сортировка по цене
+- Добавление товаров в корзину
+- Оформление заказа через mock API
+
+---
+
+## 🛠 Скрипты
+| Команда         | Назначение                         |
+|-----------------|------------------------------------|
+| `npm run dev`   | Запуск Vite dev-сервера            |
+| `npm run build` | Сборка проекта                     |
+| `npm run server`| Запуск json-server (mock backend)  |
