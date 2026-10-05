@@ -1,7 +1,9 @@
+export { Home } from "./home/Home";
+export { Menu } from "./menu/Menu";
 export { Profile } from "./profile/Profile";
-export { Catalog } from "./cathalog/Cathalog";
 export { Basket } from "./basket/Basket";
-export { Login } from "./login/Login.tsx";
-export { Register } from "./register/Register.tsx";
-export { Offer } from "./offer/Offer.tsx";
-export { NotFound } from "./not-found/NotFound.tsx";
+export { Login } from "./login/Login";
+export { Register } from "./register/Register";
+export { Offer } from "./offer/Offer";
+export { Success } from "./success/Success";
+export { NotFound } from "./not-found/NotFound";

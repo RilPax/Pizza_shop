@@ -1,46 +1,102 @@
-.profile {
-  max-width: 500px;
-  margin: 2rem auto;
-  padding: 2rem;
-  background-color: white;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  gap: 20px;
 }
 
-.title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  margin-bottom: 1.5rem;
-  text-align: center;
+.user {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-.info {
-  margin-bottom: 1rem;
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
 }
 
-.label {
-  font-weight: bold;
-  color: #555;
+.name {
+  font-size: 1.375rem;
+  font-weight: 700;
 }
 
-.value {
-  margin-left: 0.5rem;
-  color: #222;
+.mail {
+  color: var(--text-muted);
 }
 
-.logoutButton {
-  width: 100%;
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  background-color: #ff6b00;
-  color: white;
-  font-size: 1rem;
-  font-weight: bold;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+.logout {
+  margin-left: auto;
 }
 
-.logoutButton:hover {
-  background-color: #e55f00;
+.tile {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.tile:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 0 1px var(--red), var(--shadow);
+}
+
+.tileIcon {
+  display: grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 8px;
+  border-radius: 50%;
+  background: var(--red-soft);
+  color: var(--red);
+}
+
+.tileValue {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.tileLabel {
+  color: var(--text-muted);
+}
+
+.promo {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: var(--red-tint);
+  color: var(--red-dark);
+}
+
+.promo svg {
+  flex-shrink: 0;
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .user {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 480px) {
+  .logout {
+    margin-left: 0;
+    width: 100%;
+  }
 }

@@ -10,108 +10,539 @@
   "products": [
     {
       "id": "1",
-      "title": "Маргарита",
-      "description": "Классическая пицца с томатным соусом, моцареллой и свежим базиликом",
-      "price": 450,
-      "cathegory": "Пицца"
+      "title": "Пепперони",
+      "description": "Классическая пицца с пикантной пепперони и моцареллой",
+      "price": 47000,
+      "category": "pizza",
+      "image": "/images/products/pepperoni.jpg",
+      "popular": true,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 47000
+        },
+        {
+          "size": 30,
+          "price": 59000
+        },
+        {
+          "size": 35,
+          "price": 74000
+        }
+      ]
     },
     {
       "id": "2",
-      "title": "Пепперони",
-      "description": "Острая пепперони с томатным соусом и моцареллой",
-      "price": 520,
-      "cathegory": "Пицца"
+      "title": "Грибная",
+      "description": "Шампиньоны, сыр моцарелла, томатный соус",
+      "price": 39000,
+      "category": "pizza",
+      "image": "/images/products/mushroom.jpg",
+      "popular": true,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 39000
+        },
+        {
+          "size": 30,
+          "price": 49000
+        },
+        {
+          "size": 35,
+          "price": 61000
+        }
+      ]
     },
     {
       "id": "3",
-      "title": "Четыре сыра",
-      "description": "Моцарелла, пармезан, горгонзола и чеддер",
-      "price": 580,
-      "cathegory": "Пицца"
+      "title": "Куриная",
+      "description": "Куриное филе, томаты, сыр моцарелла",
+      "price": 44000,
+      "category": "pizza",
+      "image": "/images/products/chicken.jpg",
+      "popular": true,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 44000
+        },
+        {
+          "size": 30,
+          "price": 55000
+        },
+        {
+          "size": 35,
+          "price": 69000
+        }
+      ]
     },
     {
       "id": "4",
-      "title": "Гавайская",
-      "description": "Курица, ананасы, томатный соус и моцарелла",
-      "price": 500,
-      "cathegory": "Пицца"
+      "title": "Четыре сыра",
+      "description": "Моцарелла, дор блю, пармезан, чеддер",
+      "price": 55000,
+      "category": "pizza",
+      "image": "/images/products/four-cheese.jpg",
+      "popular": true,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 55000
+        },
+        {
+          "size": 30,
+          "price": 69000
+        },
+        {
+          "size": 35,
+          "price": 86000
+        }
+      ]
     },
     {
       "id": "5",
-      "title": "Мясная",
-      "description": "Ветчина, бекон, пепперони и томатный соус",
-      "price": 600,
-      "cathegory": "Пицца"
+      "title": "Маргарита",
+      "description": "Томатный соус, моцарелла и свежий базилик",
+      "price": 36000,
+      "category": "pizza",
+      "image": "/images/products/margherita.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 36000
+        },
+        {
+          "size": 30,
+          "price": 45000
+        },
+        {
+          "size": 35,
+          "price": 56000
+        }
+      ]
     },
     {
       "id": "6",
-      "title": "Вегетарианская",
-      "description": "Овощи, томатный соус и моцарелла",
-      "price": 470,
-      "cathegory": "Пицца"
+      "title": "Мясная",
+      "description": "Ветчина, бекон, говяжья колбаска и пепперони",
+      "price": 58000,
+      "category": "pizza",
+      "image": "/images/products/meat.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 58000
+        },
+        {
+          "size": 30,
+          "price": 72000
+        },
+        {
+          "size": 35,
+          "price": 90000
+        }
+      ],
+      "badge": "Хит"
     },
     {
       "id": "7",
-      "title": "Барбекю",
-      "description": "Курица, соус BBQ, лук и моцарелла",
-      "price": 550,
-      "cathegory": "Пицца"
+      "title": "Вегетарианская",
+      "description": "Перец, томаты, маслины, шпинат и моцарелла",
+      "price": 38000,
+      "category": "pizza",
+      "image": "/images/products/veggie.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 38000
+        },
+        {
+          "size": 30,
+          "price": 47000
+        },
+        {
+          "size": 35,
+          "price": 59000
+        }
+      ]
     },
     {
       "id": "8",
-      "title": "Диабло",
-      "description": "Острая пицца с халапеньо, пепперони и острым соусом",
-      "price": 590,
-      "cathegory": "Пицца"
+      "title": "Барбекю",
+      "description": "Курица, соус BBQ, красный лук и моцарелла",
+      "price": 52000,
+      "category": "pizza",
+      "image": "/images/products/bbq.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 52000
+        },
+        {
+          "size": 30,
+          "price": 65000
+        },
+        {
+          "size": 35,
+          "price": 81000
+        }
+      ]
     },
     {
       "id": "9",
-      "title": "Капричоза",
-      "description": "Ветчина, грибы, артишоки и маслины",
-      "price": 530,
-      "cathegory": "Пицца"
+      "title": "Диабло",
+      "description": "Острая пепперони, халапеньо и соус чили",
+      "price": 50000,
+      "category": "pizza",
+      "image": "/images/products/diablo.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 50000
+        },
+        {
+          "size": 30,
+          "price": 62000
+        },
+        {
+          "size": 35,
+          "price": 78000
+        }
+      ],
+      "badge": "Острая"
     },
     {
       "id": "10",
-      "title": "Салями",
-      "description": "Тонкие ломтики салями и томатный соус",
-      "price": 510,
-      "cathegory": "Пицца"
+      "title": "Капричоза",
+      "description": "Ветчина, грибы, артишоки и маслины",
+      "price": 46000,
+      "category": "pizza",
+      "image": "/images/products/capricciosa.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 46000
+        },
+        {
+          "size": 30,
+          "price": 58000
+        },
+        {
+          "size": 35,
+          "price": 72000
+        }
+      ]
     },
     {
       "id": "11",
-      "title": "С морепродуктами",
-      "description": "Креветки, мидии, кальмары и чесночный соус",
-      "price": 650,
-      "cathegory": "Пицца"
+      "title": "Салями",
+      "description": "Тонкие ломтики салями, томаты и моцарелла",
+      "price": 43000,
+      "category": "pizza",
+      "image": "/images/products/salami.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 43000
+        },
+        {
+          "size": 30,
+          "price": 54000
+        },
+        {
+          "size": 35,
+          "price": 68000
+        }
+      ]
     },
     {
       "id": "12",
-      "title": "С грибами",
-      "description": "Свежие шампиньоны и моцарелла",
-      "price": 480,
-      "cathegory": "Пицца"
+      "title": "С морепродуктами",
+      "description": "Креветки, мидии, кальмары и чесночный соус",
+      "price": 68000,
+      "category": "pizza",
+      "image": "/images/products/seafood.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 68000
+        },
+        {
+          "size": 30,
+          "price": 85000
+        },
+        {
+          "size": 35,
+          "price": 106000
+        }
+      ]
     },
     {
       "id": "13",
       "title": "Фирменная",
-      "description": "Микс из разных мясных и овощных топпингов",
-      "price": 620,
-      "cathegory": "Пицца"
+      "description": "Микс мясных и овощных топпингов от шефа",
+      "price": 60000,
+      "category": "pizza",
+      "image": "/images/products/signature.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 60000
+        },
+        {
+          "size": 30,
+          "price": 75000
+        },
+        {
+          "size": 35,
+          "price": 94000
+        }
+      ],
+      "badge": "Хит"
     },
     {
       "id": "14",
-      "title": "С рикоттой и шпинатом",
+      "title": "Рикотта и шпинат",
       "description": "Рикотта, свежий шпинат и оливковое масло",
-      "price": 560,
-      "cathegory": "Пицца"
+      "price": 46000,
+      "category": "pizza",
+      "image": "/images/products/spinach.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 46000
+        },
+        {
+          "size": 30,
+          "price": 57000
+        },
+        {
+          "size": 35,
+          "price": 71000
+        }
+      ]
     },
     {
       "id": "15",
-      "title": "С трюфелем",
-      "description": "Трюфельное масло, моцарелла и грибы",
-      "price": 700,
-      "cathegory": "Пицца"
+      "title": "Неаполитанская",
+      "description": "Томаты черри, моцарелла, базилик и орегано",
+      "price": 42000,
+      "category": "pizza",
+      "image": "/images/products/napoli.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 42000
+        },
+        {
+          "size": 30,
+          "price": 52000
+        },
+        {
+          "size": 35,
+          "price": 65000
+        }
+      ]
+    },
+    {
+      "id": "16",
+      "title": "С рукколой",
+      "description": "Прошутто, руккола, пармезан и томаты черри",
+      "price": 49000,
+      "category": "pizza",
+      "image": "/images/products/arugula.jpg",
+      "popular": false,
+      "sizes": [
+        {
+          "size": 25,
+          "price": 49000
+        },
+        {
+          "size": 30,
+          "price": 61000
+        },
+        {
+          "size": 35,
+          "price": 76000
+        }
+      ],
+      "badge": "Новинка"
+    },
+    {
+      "id": "17",
+      "title": "Комбо «Дуэт»",
+      "description": "2 пиццы 30 см + 2 напитка 0,5 л",
+      "price": 129000,
+      "category": "combo",
+      "image": "/images/products/combo-duo.jpg",
+      "popular": true,
+      "badge": "-15%"
+    },
+    {
+      "id": "18",
+      "title": "Комбо «Для друзей»",
+      "description": "3 пиццы 30 см + картофель фри + 3 напитка",
+      "price": 199000,
+      "category": "combo",
+      "image": "/images/products/combo-friends.jpg",
+      "popular": true,
+      "badge": "-20%"
+    },
+    {
+      "id": "19",
+      "title": "Комбо «Семейный»",
+      "description": "2 пиццы 35 см + закуска + напиток 1,5 л",
+      "price": 179000,
+      "category": "combo",
+      "image": "/images/products/combo-family.jpg",
+      "popular": true
+    },
+    {
+      "id": "20",
+      "title": "Картофель фри",
+      "description": "Хрустящий картофель фри с солью",
+      "price": 18000,
+      "category": "snacks",
+      "image": "/images/products/fries.jpg",
+      "popular": true
+    },
+    {
+      "id": "21",
+      "title": "Фри XL",
+      "description": "Большая порция фри с сырным соусом",
+      "price": 24000,
+      "category": "snacks",
+      "image": "/images/products/fries-basket.jpg",
+      "popular": false
+    },
+    {
+      "id": "22",
+      "title": "Куриные крылья BBQ",
+      "description": "6 крыльев в соусе барбекю",
+      "price": 35000,
+      "category": "snacks",
+      "image": "/images/products/wings.jpg",
+      "popular": true
+    },
+    {
+      "id": "23",
+      "title": "Куриные стрипсы",
+      "description": "Филе в хрустящей панировке, 5 шт",
+      "price": 32000,
+      "category": "snacks",
+      "image": "/images/products/strips.jpg",
+      "popular": true
+    },
+    {
+      "id": "24",
+      "title": "Курица по-американски",
+      "description": "Сочные кусочки курицы в панировке",
+      "price": 39000,
+      "category": "snacks",
+      "image": "/images/products/fried-chicken.jpg",
+      "popular": false
+    },
+    {
+      "id": "25",
+      "title": "Coca-Cola",
+      "description": "0,5 л",
+      "price": 12000,
+      "category": "drinks",
+      "image": "/images/products/cola.jpg",
+      "popular": true
+    },
+    {
+      "id": "26",
+      "title": "Sprite",
+      "description": "0,5 л",
+      "price": 12000,
+      "category": "drinks",
+      "image": "/images/products/sprite.jpg",
+      "popular": true
+    },
+    {
+      "id": "27",
+      "title": "Апельсиновый сок",
+      "description": "Свежевыжатый, 0,3 л",
+      "price": 15000,
+      "category": "drinks",
+      "image": "/images/products/juice.jpg",
+      "popular": true
+    },
+    {
+      "id": "28",
+      "title": "Молочный коктейль",
+      "description": "С печеньем Oreo, 0,4 л",
+      "price": 22000,
+      "category": "drinks",
+      "image": "/images/products/milkshake.jpg",
+      "popular": true
+    },
+    {
+      "id": "29",
+      "title": "Тирамису",
+      "description": "Маскарпоне, савоярди и кофе",
+      "price": 28000,
+      "category": "desserts",
+      "image": "/images/products/tiramisu.jpg",
+      "popular": true
+    },
+    {
+      "id": "30",
+      "title": "Шоколадный торт",
+      "description": "Кусочек торта с шоколадным кремом",
+      "price": 26000,
+      "category": "desserts",
+      "image": "/images/products/choco-cake.jpg",
+      "popular": true
+    },
+    {
+      "id": "31",
+      "title": "Брауни",
+      "description": "Шоколадный брауни с хрустящей корочкой",
+      "price": 22000,
+      "category": "desserts",
+      "image": "/images/products/brownie.jpg",
+      "popular": true
+    },
+    {
+      "id": "32",
+      "title": "Пончики",
+      "description": "3 пончика с глазурью",
+      "price": 24000,
+      "category": "desserts",
+      "image": "/images/products/donuts.jpg",
+      "popular": true
+    },
+    {
+      "id": "33",
+      "title": "Томатный соус",
+      "description": "Пикантный соус для бортиков, 40 г",
+      "price": 5000,
+      "category": "sauces",
+      "image": "/images/products/tomato-sauce.jpg",
+      "popular": true
+    },
+    {
+      "id": "34",
+      "title": "Набор соусов",
+      "description": "Сырный, чесночный, BBQ и кисло-сладкий",
+      "price": 15000,
+      "category": "sauces",
+      "image": "/images/products/sauce-set.jpg",
+      "popular": true
     }
   ]
 }

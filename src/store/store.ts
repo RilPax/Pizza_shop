@@ -1,26 +1,25 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, type ThunkAction, type UnknownAction } from "@reduxjs/toolkit";
 import userReducer from "./slices/user-slice";
 import productsReducer from "./slices/products-slice";
 import basketReducer from "./slices/basket-slice";
-import {
-  useDispatch,
-  useSelector,
-  type TypedUseSelectorHook,
-} from "react-redux";
+import favoritesReducer from "./slices/favorites-slice";
+import toastReducer from "./slices/toast-slice";
+import { useDispatch, useSelector } from "react-redux";
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     products: productsReducer,
     basket: basketReducer,
+    favorites: favoritesReducer,
+    toast: toastReducer,
   },
 });
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
+export type AppThunk<R = void> = ThunkAction<R, RootState, unknown, UnknownAction>;
 
-// Хук для диспатча с типами
-export const useAppDispatch: () => AppDispatch = useDispatch;
-
-// Хук для селектора с типами
-export const useAppSelector: TypedUseSelectorHook<RootState> = useSelector;
+// Типизированные хуки
+export const useAppDispatch = useDispatch.withTypes<AppDispatch>();
+export const useAppSelector = useSelector.withTypes<RootState>();

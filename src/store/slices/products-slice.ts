@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { fetchProducts } from "../../utils/api";
+import { fetchProducts, getErrorMessage } from "../../utils/api";
 import type { TProduct } from "../../utils/types";
 
 interface ProductsState {
@@ -14,28 +14,32 @@ const initialState: ProductsState = {
   error: null,
 };
 
-export const fetchProductsThunk = createAsyncThunk<TProduct[]>(
+export const fetchProductsThunk = createAsyncThunk<
+  TProduct[],
+  void,
+  { rejectValue: string }
+>(
   "products/fetchAll",
   async (_, { rejectWithValue }) => {
     try {
       return await fetchProducts();
     } catch (err) {
-      return rejectWithValue(err);
+      return rejectWithValue(getErrorMessage(err, "Не удалось загрузить меню"));
     }
+  },
+  {
+    // Не грузим меню повторно, если оно уже есть или грузится
+    condition: (_, { getState }) => {
+      const { products } = (getState() as { products: ProductsState });
+      return !products.loading && products.products.length === 0;
+    },
   }
 );
 
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-    sortByPriceAsc(state) {
-      state.products.sort((a, b) => a.price - b.price);
-    },
-    sortByPriceDesc(state) {
-      state.products.sort((a, b) => b.price - a.price);
-    },
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchProductsThunk.pending, (state) => {
@@ -48,11 +52,9 @@ const productsSlice = createSlice({
       })
       .addCase(fetchProductsThunk.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.payload as string;
+        state.error = action.payload ?? "Не удалось загрузить меню";
       });
   },
 });
 
 export default productsSlice.reducer;
-
-export const { sortByPriceAsc, sortByPriceDesc } = productsSlice.actions

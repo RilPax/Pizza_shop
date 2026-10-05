@@ -1,130 +1,154 @@
-import {
-  createAsyncThunk,
-  createSlice,
-  type PayloadAction,
-} from "@reduxjs/toolkit";
-import type { TProduct } from "../../utils/types";
-import type { RootState } from "../store";
+import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
+import type { TBasketItem } from "../../utils/types";
+import type { AppThunk, RootState } from "../store";
+import { PROMO_CODES } from "../../utils/constants";
 
 interface BasketState {
-  products: TProduct[];
-  sum: number;
-  orderSuccess: boolean
+  items: TBasketItem[];
+  promoCode: string | null;
+  orderSuccess: boolean;
 }
 
 const initialState: BasketState = {
-  products: [],
-  sum: 0,
-  orderSuccess: false
+  items: [],
+  promoCode: null,
+  orderSuccess: false,
 };
 
-// Вспомогательная функция для безопасного ключа
+const GUEST_KEY = "basket_guest";
+
+// Корзина хранится в localStorage: у гостя своя, у пользователя — своя
 const getBasketKey = (state: RootState) => {
-  const user = state.user.user; // предполагаем, что в auth хранится user
-  return user ? `basket_${user.id}` : null;
+  const user = state.user.user;
+  return user ? `basket_${user.id}` : GUEST_KEY;
 };
 
-export const fetchBasket = createAsyncThunk<
-  TProduct[],
-  void,
-  { state: RootState }
->("basket/fetch", async (_, { getState, rejectWithValue }) => {
+const readBasket = (key: string): TBasketItem[] => {
   try {
-    const key = getBasketKey(getState());
-    if (!key) return [];
-
-    const productsRaw = localStorage.getItem(key);
-    if (!productsRaw) return [];
-
-    const products: TProduct[] = JSON.parse(productsRaw);
-    return products;
-  } catch (error) {
-    return rejectWithValue(error);
+    const raw = localStorage.getItem(key);
+    if (!raw) return [];
+    const parsed: unknown = JSON.parse(raw);
+    if (!Array.isArray(parsed)) return [];
+    // Отбрасываем записи старого формата (до появления размеров и количества)
+    return parsed.filter(
+      (item): item is TBasketItem =>
+        typeof item?.key === "string" && typeof item?.quantity === "number"
+    );
+  } catch {
+    return [];
   }
-});
+};
 
-export const addProductAndSave = createAsyncThunk<
-  void,
-  TProduct,
-  { state: RootState }
->("basket/addProductAndSave", async (product, { dispatch, getState }) => {
-  const state = getState();
-  const user = state.user.user;
-  if (!user) return;
+const saveBasket = (state: RootState) => {
+  localStorage.setItem(getBasketKey(state), JSON.stringify(state.basket.items));
+};
 
-  const newProducts = [...state.basket.products, product];
-  dispatch(setProducts(newProducts));
-
-  const key = `basket_${user.id}`;
-  localStorage.setItem(key, JSON.stringify(newProducts));
-});
-
-export const removeProductAndSave = createAsyncThunk<
-  void,
-  string,
-  { state: RootState }
->("basket/removeProductAndSave", async (productId, { dispatch, getState }) => {
-  const state = getState();
-  const user = state.user.user;
-  if (!user) return;
-
-  const newProducts = state.basket.products.filter(
-    (product) => product.id !== productId
-  );
-  dispatch(setProducts(newProducts));
-
-  const key = `basket_${user.id}`;
-  localStorage.setItem(key, JSON.stringify(newProducts));
-});
-
-export const clearBasket = createAsyncThunk<
-  TProduct[],
-  void,
-  { state: RootState }
->(
-  'basket/clear',
-  async (__, { getState, rejectWithValue }) => {
-    try {
-      const state = getState();
-      const isAuth = state.user.isAuth; // если user внутри state.user
-
-      if (!isAuth) {
-        return rejectWithValue("Пользователь не найден");
-      }
-
-      localStorage.removeItem(`basket_${state.user.user!.id}`);
-      return [];
-    } catch (error) {
-      return rejectWithValue(error);
-    }
-  }
-);
+const mergeItems = (target: TBasketItem[], source: TBasketItem[]) => {
+  const result = target.map((item) => ({ ...item }));
+  source.forEach((item) => {
+    const existing = result.find((i) => i.key === item.key);
+    if (existing) existing.quantity += item.quantity;
+    else result.push({ ...item });
+  });
+  return result;
+};
 
 const basketSlice = createSlice({
   name: "basket",
   initialState,
   reducers: {
-    setProducts: (state, action: PayloadAction<TProduct[]>) => {
-      state.products = action.payload;
-      state.sum = action.payload.length;
+    setItems: (state, action: PayloadAction<TBasketItem[]>) => {
+      state.items = action.payload;
+    },
+    addItem: (state, action: PayloadAction<Omit<TBasketItem, "quantity">>) => {
+      const existing = state.items.find((i) => i.key === action.payload.key);
+      if (existing) existing.quantity += 1;
+      else state.items.push({ ...action.payload, quantity: 1 });
+    },
+    changeQuantity: (
+      state,
+      action: PayloadAction<{ key: string; delta: number }>
+    ) => {
+      const item = state.items.find((i) => i.key === action.payload.key);
+      if (!item) return;
+      item.quantity += action.payload.delta;
+      if (item.quantity <= 0) {
+        state.items = state.items.filter((i) => i.key !== action.payload.key);
+      }
+    },
+    removeItem: (state, action: PayloadAction<string>) => {
+      state.items = state.items.filter((i) => i.key !== action.payload);
+    },
+    clearItems: (state) => {
+      state.items = [];
+      state.promoCode = null;
+    },
+    setPromoCode: (state, action: PayloadAction<string | null>) => {
+      state.promoCode = action.payload;
     },
     setOrderSuccess: (state, action: PayloadAction<boolean>) => {
       state.orderSuccess = action.payload;
-    }
-  },
-  extraReducers: (builder) => {
-    builder
-      .addCase(fetchBasket.fulfilled, (state, action) => {
-          state.products = action.payload;
-          state.sum = action.payload.length;
-        })
-      .addCase(clearBasket.fulfilled, (state, action) => {
-        state.products = action.payload
-        state.sum = 0
-      })
+    },
   },
 });
 
-export const { setProducts, setOrderSuccess } = basketSlice.actions;
+const { setItems, addItem, changeQuantity, removeItem, clearItems } =
+  basketSlice.actions;
+
+export const { setPromoCode, setOrderSuccess } = basketSlice.actions;
+
+// Загружаем корзину текущего пользователя (или гостя).
+// При входе гостевая корзина переносится в корзину пользователя.
+export const loadBasket = (): AppThunk => (dispatch, getState) => {
+  const state = getState();
+  let items = readBasket(getBasketKey(state));
+
+  if (state.user.user) {
+    const guestItems = readBasket(GUEST_KEY);
+    if (guestItems.length > 0) {
+      items = mergeItems(items, guestItems);
+      localStorage.removeItem(GUEST_KEY);
+    }
+  }
+
+  dispatch(setItems(items));
+  saveBasket(getState());
+};
+
+export const addToBasket =
+  (item: Omit<TBasketItem, "quantity">): AppThunk =>
+  (dispatch, getState) => {
+    dispatch(addItem(item));
+    saveBasket(getState());
+  };
+
+export const changeBasketQuantity =
+  (key: string, delta: number): AppThunk =>
+  (dispatch, getState) => {
+    dispatch(changeQuantity({ key, delta }));
+    saveBasket(getState());
+  };
+
+export const removeFromBasket =
+  (key: string): AppThunk =>
+  (dispatch, getState) => {
+    dispatch(removeItem(key));
+    saveBasket(getState());
+  };
+
+export const clearBasket = (): AppThunk => (dispatch, getState) => {
+  dispatch(clearItems());
+  saveBasket(getState());
+};
+
+// Селекторы
+export const selectBasketCount = (state: RootState) =>
+  state.basket.items.reduce((sum, item) => sum + item.quantity, 0);
+
+export const selectBasketSubtotal = (state: RootState) =>
+  state.basket.items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+export const selectDiscountPercent = (state: RootState) =>
+  state.basket.promoCode ? PROMO_CODES[state.basket.promoCode] ?? 0 : 0;
 
 export default basketSlice.reducer;

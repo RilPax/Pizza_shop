@@ -1,0 +1,66 @@
+.skeleton {
+  overflow: hidden;
+  border-radius: var(--radius);
+  box-shadow: 0 0 0 1px var(--border);
+  background: #fff;
+}
+
+.skeletonMedia,
+.line {
+  background: linear-gradient(90deg, var(--surface) 25%, #ececee 50%, var(--surface) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.4s infinite linear;
+}
+
+.skeletonMedia {
+  aspect-ratio: 16 / 10;
+}
+
+.skeletonBody {
+  display: grid;
+  gap: 10px;
+  padding: 16px;
+}
+
+.line {
+  height: 14px;
+  border-radius: 6px;
+}
+
+@keyframes shimmer {
+  to {
+    background-position: -200% 0;
+  }
+}
+
+.error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 48px 24px;
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  text-align: center;
+}
+
+.errorEmoji {
+  font-size: 2.5rem;
+}
+
+.errorTitle {
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.errorText {
+  margin-bottom: 12px;
+  color: var(--text-muted);
+}
+
+.errorText code {
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: #fff;
+  font-size: 0.875em;
+}
